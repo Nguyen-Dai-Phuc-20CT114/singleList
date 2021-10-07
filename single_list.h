@@ -296,6 +296,7 @@ singleList_t<data_t> *create_List(singleList_t<data_t> *&head, unsigned num = 1)
         for(int i = 1; i <= num; ++i)
         {
             singleList_t<data_t> *singlyList_new = new singleList_t<data_t>();
+            singlyList_new->set_next(nullptr);
 
             if(i == 1)
             {
@@ -378,22 +379,22 @@ singleList_t<data_t> *get_Node(singleList_t<data_t> *head, unsigned pos = 0)
 {
     if(true)
     {
-        singleList_t<data_t> *singlyList_curr = head;
+        singleList_t<data_t> *node_curr = head;
 
         int i = 0;
-        while(i < pos && singlyList_curr->get_next() != nullptr)
+        while(i < pos && node_curr->get_next() != nullptr)
         {
-            singlyList_curr = singlyList_curr->get_next();
+            node_curr = node_curr->get_next();
             ++i;
         }
 
         // pos > number of
-        if(singlyList_curr->get_next() == nullptr && i < pos-1)
+        if(node_curr->get_next() == nullptr && i < pos)
         {
             return nullptr;
         }
 
-        return singlyList_curr;
+        return node_curr;
     }
 }
 
@@ -497,25 +498,25 @@ singleList_t<data_t> *add_Before(singleList_t<data_t> *&head, unsigned num = 1, 
 
             else
             {
-                singleList_t<data_t> *singlyList_curr = head;
-                singleList_t<data_t> *singlyList_befo = head;
+                singleList_t<data_t> *node_curr = head;
+                singleList_t<data_t> *node_befo = head;
 
                 int i = 0;
-                while(i < pos && singlyList_curr->get_next() != nullptr)
+                while(i < pos && node_curr->get_next() != nullptr)
                 {
-                    singlyList_befo = singlyList_curr;
-                    singlyList_curr = singlyList_curr->get_next();
+                    node_befo = node_curr;
+                    node_curr = node_curr->get_next();
                     ++i;
                 }
 
                 // pos > number of nodes
-                if(singlyList_curr->get_next() == nullptr && i < pos-1)
+                if(node_curr->get_next() == nullptr && i < pos)
                 {
                     return nullptr;
                 }
 
-                singleList_t<data_t> *temp = add_Head(singlyList_curr, num, addMode);
-                singlyList_befo->set_next(temp);
+                singleList_t<data_t> *temp = add_Head(node_curr, num, addMode);
+                node_befo->set_next(temp);
 
                 return temp;
             }
@@ -569,16 +570,16 @@ singleList_t<data_t> *add_After(singleList_t<data_t> *&head, singleList_t<data_t
 
         else
         {
-            singleList_t<data_t> *singlyList_curr = head;
+            singleList_t<data_t> *node_curr = head;
 
             int i = 0;
-            while(i < pos && singlyList_curr->get_next() != nullptr)
+            while(i < pos && node_curr->get_next() != nullptr)
             {
-                singlyList_curr = singlyList_curr->get_next();
+                node_curr = node_curr->get_next();
                 ++i;
             }
 
-            if(singlyList_curr->get_next() == nullptr)
+            if(node_curr->get_next() == nullptr)
             {
                 // pos is tail of singly list
                 if(i == pos)
@@ -595,9 +596,9 @@ singleList_t<data_t> *add_After(singleList_t<data_t> *&head, singleList_t<data_t
 
             else
             {
-                singleList_t<data_t> *singlyList_next = singlyList_curr->get_next();
+                singleList_t<data_t> *singlyList_next = node_curr->get_next();
 
-                singleList_t<data_t> *temp = add_Tail(singlyList_curr, num);
+                singleList_t<data_t> *temp = add_Tail(node_curr, num);
 
                 temp->set_next(singlyList_next);
 
@@ -719,9 +720,9 @@ errDel_t delete_Tail(singleList_t<data_t> *&head, singleList_t<data_t> *&tail, u
                             node_curr = node_curr->get_next();
                         }
                         
-                        delete node_curr;
                         node_befo->set_next(nullptr);
                         tail = node_befo;
+                        delete node_curr;
                     }
                 }
 
@@ -844,7 +845,7 @@ template <class data_t>
 errDel_t delete_Node(singleList_t<data_t> *&head, singleList_t<data_t> *&tail, unsigned num = 1, unsigned pos = 0)
 {
 #if true
-    if(pos > 0)
+    if(num > 0)
     {
         if(head != nullptr)
         {
@@ -852,29 +853,78 @@ errDel_t delete_Node(singleList_t<data_t> *&head, singleList_t<data_t> *&tail, u
             {
                 if(num == 1)
                 {
-                    singleList_t<data_t> *node_befo = head;
-                    singleList_t<data_t> *node_curr = head;
-
-                    int i = 0;
-                    while(node_curr->get_next() != nullptr && i < pos)
+                    if(head == tail)
                     {
+                        delete head;
+                        head = tail = nullptr;
+                    }
+
+                    else if(pos == 0)
+                    {
+                    	singleList_t<data_t> *node_befo = head;
+                        singleList_t<data_t> *node_curr = head;
+
                         node_befo = node_curr;
                         node_curr = node_curr->get_next();
-                        ++i;
+                        delete node_befo;
+
+                        head = node_curr; 
                     }
 
-                    if(node_curr == nullptr && i < pos-1)
+                    else 
                     {
-                        return E_POS;
+                        singleList_t<data_t> *node_befo = head;
+                        singleList_t<data_t> *node_curr = head;
+
+                        int i = 0;
+                        while(node_curr->get_next() != nullptr && i < pos)
+                        {
+                            node_befo = node_curr;
+                            node_curr = node_curr->get_next();
+                            ++i;
+                        }
+
+                        if(node_curr->get_next() == nullptr)
+                        {
+                            if(i < pos) {return E_POS;}
+
+                            else if(i == pos)
+                            {
+                                node_befo->set_next(nullptr);
+                                tail = node_befo;
+                                delete node_curr;
+                            }
+                        }
+
+                        else
+                        {
+                            node_befo->set_next(node_curr->get_next());
+                            delete node_curr;                        
+                        }
                     }
-
-                    
-
                 }
 
+                // Num > 1
                 else
                 {
+                    // There is 1 node
+                    if(head == tail)
+                    {
+                        delete head;
+                        head = tail = nullptr;
 
+                        if(num > 1) {return W_NUM;}
+                    }
+
+                    else
+                    {
+                        // Delete 1 node n times
+                        for(int i = 0; i < num; ++i)
+                        {
+                            errDel_t ret = delete_Node(head, tail, 1, pos);
+                            if(ret != E_OK) {return ret;}
+                        }
+                    }
                 }
                 
                 return E_OK;
@@ -902,24 +952,29 @@ template <class data_t>
 errDel_t delete_All(singleList_t<data_t> *&head, singleList_t<data_t> *&tail)
 {
 #if true
-    if(1 > 0)
+    if(head != nullptr)
     {
-        if(head != nullptr)
+        if(tail != nullptr)
         {
-            if(tail != nullptr)
-            {
 
-                
-                return E_OK;
+            // There are many nodes
+            while(head->get_next() != nullptr)
+            {
+                delete head;
+                head = head->get_next();
             }
 
-            return E_TAIL;
+            // There is one node
+            delete head;
+            head = tail = nullptr;
+                
+            return E_OK;
         }
 
-        return E_HEAD;
+        return E_TAIL;
     }
 
-    return E_NUM;
+    return E_HEAD;
 #endif
 }
 

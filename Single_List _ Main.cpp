@@ -114,8 +114,8 @@ int main()
 	
 
 
-	singleList_t<sinhVien_t> *lopC_head = nullptr;
-	singleList_t<sinhVien_t> *lopC_tail = nullptr;
+	// singleList_t<sinhVien_t> *lopC_head = nullptr;
+	// singleList_t<sinhVien_t> *lopC_tail = nullptr;
 
 	// add_Head(lopC_head, 2);
 	// inDSSV("C add head (null)", lopC_head);
@@ -134,25 +134,25 @@ int main()
 
 
 
-	lopC_tail = create_List(lopC_head, 2);
-	inDSSV("C create", lopC_head);
+	// lopC_tail = create_List(lopC_head, 2);
+	// inDSSV("C create", lopC_head);
 
 
 
-	add_Head(lopC_head, 2);
-	inDSSV("C add head", lopC_head);
+	// add_Head(lopC_head, 2);
+	// inDSSV("C add head", lopC_head);
 
-	add_Tail(lopC_tail, 2);
-	inDSSV("C add tail", lopC_head);
+	// add_Tail(lopC_tail, 2);
+	// inDSSV("C add tail", lopC_head);
 
-	add_Before(lopC_head, 2, 0, QUEUE);
-	inDSSV("C add before 0 (queue)", lopC_head);
+	// add_Before(lopC_head, 2, 0, QUEUE);
+	// inDSSV("C add before 0 (queue)", lopC_head);
 
-	add_Before(lopC_head, 2, 0, STACK);
-	inDSSV("C add before 0 (stack)", lopC_head);
+	// add_Before(lopC_head, 2, 0, STACK);
+	// inDSSV("C add before 0 (stack)", lopC_head);
 
-	add_After(lopC_head, lopC_tail, 2, 0);
-	inDSSV("C add after 0", lopC_head);
+	// add_After(lopC_head, lopC_tail, 2, 0);
+	// inDSSV("C add after 0", lopC_head);
 
 
 
@@ -196,23 +196,47 @@ int main()
 	// add_After(lopC_head, lopC_tail, 2, -1);
 	// inDSSV("C add after -1", lopC_head);
 
-	add_After(lopC_head, lopC_tail, 2, 40);
-	inDSSV("C add after 40", lopC_head);
+	// add_After(lopC_head, lopC_tail, 2, 40);
+	// inDSSV("C add after 40", lopC_head);
 
-	add_After(lopC_head, lopC_tail, 2, 40);
-	inDSSV("C add after 40", lopC_head);
+	// add_After(lopC_head, lopC_tail, 2, 40);
+	// inDSSV("C add after 40", lopC_head);
 
-	add_After(lopC_head, lopC_tail, 2, 11);
-	inDSSV("C add after 11", lopC_head);
+	// add_After(lopC_head, lopC_tail, 2, 11);
+	// inDSSV("C add after 11", lopC_head);
 
-	add_After(lopC_head, lopC_tail, 2, 12);
-	inDSSV("C add after 12", lopC_head);
+	// add_After(lopC_head, lopC_tail, 2, 12);
+	// inDSSV("C add after 12", lopC_head);
 
-	delete_Head(lopC_head, lopC_tail, 2);
-	inDSSV("c delete head", lopC_head);
+	// delete_Head(lopC_head, lopC_tail, 2);
+	// inDSSV("c delete head", lopC_head);
 
-	delete_Tail(lopC_head, lopC_tail, 14);
-	inDSSV("c delete tail", lopC_head);
+	// delete_Tail(lopC_head, lopC_tail, 14);
+	// inDSSV("c delete tail", lopC_head);
+
+
+	singleList_t<sinhVien_t> *lopD_head = nullptr;
+	singleList_t<sinhVien_t> *lopD_tail = create_List(lopD_head, 8);
+
+	// delete_Head(lopD_head, lopD_tail, 2);
+	// inDSSV("D delete head", lopD_head);
+
+	// delete_Tail(lopD_head, lopD_tail, 2);
+	// inDSSV("D delete tail", lopD_head);
+
+	// delete_Node(lopD_head, lopD_tail, 2, 2);
+	// inDSSV("D delete 2th node", lopD_head);
+
+	// std::cout << "\n\nGet 2th node: " << get_Node(lopD_head, 4)->data.stt << "\n\n";
+
+	delete_Node(lopD_head, lopD_tail, 2, 2);
+	inDSSV("D delete 2th node (16 times)", lopD_head);
+
+	delete_Head(lopD_head, lopD_tail, 2);
+	inDSSV("D delete head (16)", lopD_head);
+
+	delete_Node(lopD_head, lopD_tail, 16, 0);
+	inDSSV("D delete head (16)", lopD_head);
 
 	std::cout << "\n";
 	
