@@ -24,10 +24,19 @@ class sinhVien_t
 		sinhVien_t()
 		{
 			++index;
-			stt = diem = index;
+			stt = diem = index + 1;
+		}
+
+		sinhVien_t(bool a)
+		{
+
 		}
 };
 unsigned sinhVien_t::index = 0;
+
+
+
+
 
 template<class data_t>
 void inDSSV(std::string s, singleList_t<data_t> *head)
@@ -38,7 +47,7 @@ void inDSSV(std::string s, singleList_t<data_t> *head)
 	singleList_t<sinhVien_t> *sv_curr = head;
 	while(sv_curr != nullptr)
 	{
-		std::cout << sv_curr->data.stt;
+		std::cout << sv_curr->data_.stt;
 		if(sv_curr->get_next() != nullptr){
 			std::cout << " -> ";
 		}
@@ -58,187 +67,317 @@ void printSinhVien(sinhVien_t sinhVien)
 }
 
 
+bool timSinhVien2(sinhVien_t sinhVien)
+{
+	if(sinhVien.stt == 2)	{return true;}
+	return false;
+}
+
+bool sttTangDan(sinhVien_t sinhVien1, sinhVien_t sinhVien2)
+{
+	if(sinhVien1.stt > sinhVien2.stt)	{return true;}
+	return false;
+}
+
+bool diem2(sinhVien_t sinhVien)
+{
+	if(sinhVien.diem == 2){return true;}
+	return false;	
+}
+
+
 
 int main()
 {
 	
-	// singleList_t<sinhVien_t> *lopA_head = nullptr;
-	// singleList_t<sinhVien_t> *lopA_tail = create_List(lopA_head, 2);
+	singleList_t<sinhVien_t> *lopA_head = nullptr;
+	singleList_t<sinhVien_t> *lopA_tail = create_List(lopA_head, 4);
 
-	// inDSSV("A create", lopA_head);
+	inDSSV("A create 2 +", lopA_head);
+
+	/* ------------------------------- */
+
+	// std::cout << "\nA get tail: " << get_Tail(lopA_head)->data_.stt << "\n";
 	
+	std::cout << "\nA get index: " << get_Index(lopA_head, diem2) << "\n";
+
+	// std::cout << "\nA get node 0: " << get_Node(lopA_head, 0)->data_.stt << "\n";
+
+	// std::cout << "\nA get node 2: " << get_Node(lopA_head, 2)->data_.stt << "\n";
+
+	// std::cout << "\nA find node (student has stt 2): " << find_Node(lopA_head, timSinhVien2, 0)->data_.stt << "\n";
+	
+	/* ------------------------ */
 
 	// add_Head(lopA_head, 2, STACK);
-	// inDSSV("A add first (stack mode)", lopA_head);
-
+	// inDSSV("A add head (stack mode)", lopA_head);
 	
 	// add_Head(lopA_head, 2, QUEUE);
-	// inDSSV("A add first (queue mode)", lopA_head);
+	// inDSSV("A add head (queue mode)", lopA_head);
 
+	/* ------------------------ */
 
 	// add_Tail(lopA_tail, 2);
-	// inDSSV("A add last", lopA_head);
+	// inDSSV("A add tail", lopA_head);
+
+	/* -------------------- */
+
+	// add_Before(lopA_head, 2, 0, QUEUE);
+	// inDSSV("A add before (pos 0) (QUEUE)", lopA_head);
+
+	// add_Before(lopA_head, 2, 0, STACK);
+	// inDSSV("A add before (pos 0) (STACK)", lopA_head);
 
 
+
+	// add_Before(lopA_head, 2, 2, QUEUE);
+	// inDSSV("A add before (pos 2) (QUEUE)", lopA_head);
+
+	// add_Before(lopA_head, 2, 2, STACK);
+	// inDSSV("A add before (pos 2) (STACK)", lopA_head);
+
+
+
+	// add_Before(lopA_head, 2, -1, QUEUE);
+	// inDSSV("A add before (pos -1) (QUEUE)", lopA_head);
+
+	// add_Before(lopA_head, 2, -1, STACK);
+	// inDSSV("A add before (pos -1) (STACK)", lopA_head);
+
+
+
+	// add_Before(lopA_head, 2, 40, QUEUE);
+	// inDSSV("A add before (pos 40) (QUEUE)", lopA_head);
+
+	// add_Before(lopA_head, 2, 40, STACK);
+	// inDSSV("A add before (pos 40) (STACK)", lopA_head);
+
+	/* ------------------------------- */
+
+	// add_After(lopA_head, lopA_tail, 2, -1);
+	// inDSSV("A add after (pos -1)", lopA_head);
+
+	// add_After(lopA_head, lopA_tail, 2, 0);
+	// inDSSV("A add after (pos 0)", lopA_head);
+
+	// add_After(lopA_head, lopA_tail, 2, 2);
+	// inDSSV("A add after (pos 2)", lopA_head);
+
+	// add_After(lopA_head, lopA_tail, 2, 40);
+	// inDSSV("A add after (pos 40)", lopA_head);
+
+	/* ------------------------------- */
 
 	// singleList_t<sinhVien_t> *lopB_head = nullptr;
-	// singleList_t<sinhVien_t> *lopB_tail = nullptr;
+	// singleList_t<sinhVien_t> *lopB_tail = create_List(lopB_head, 4);
+
+	// inDSSV("B create 2 +", lopB_head);
+
+	// insert_Head(lopA_head, get_Node(lopB_head, 2));
+	// inDSSV("A insert head (B pos 2)", lopA_head);
+
+	// insert_Tail(lopA_tail, get_Node(lopB_head, 2));
+	// inDSSV("A insert tail (B pos 2)", lopA_head);
 
 
-	// add_Head(lopB_head, 2, QUEUE);
-	// inDSSV("B add head	(queue mode)", lopB_head);
-
-
-	// add_Head(lopB_head, 2, STACK);
-	// inDSSV("B add head (stack mode)", lopB_head);
-
-
-	// lopB_tail = get_Tail(lopB_head);
-
-
-	// add_Tail(lopB_tail, 2);
-	// inDSSV("B add tail", lopB_head);
-
-
-	// std::cout << add_Before(lopB_head, 2, 0, QUEUE);
-	// inDSSV("B add before 0 (queue)", lopB_head);
-
-	// add_Before(lopB_head, 2, 0, STACK);
-	// inDSSV("B add before 0 (stack)", lopB_head);
-
-	// add_Before(lopB_head, 2, 2, QUEUE);
-	// inDSSV("B add before 2 (stack)", lopB_head);
-
-	// add_Before(lopB_head, 2, 2, STACK);
-	// inDSSV("B add before 2 (stack)", lopB_head);
 	
 
+	// insert_Before(lopA_head, get_Node(lopB_head, 2), 0);
+	// inDSSV("A insert before (A pos 0) (B pos 2)", lopA_head);
 
-	// singleList_t<sinhVien_t> *lopC_head = nullptr;
-	// singleList_t<sinhVien_t> *lopC_tail = nullptr;
+	// insert_Before(lopA_head, get_Node(lopB_head, 2), 2);
+	// inDSSV("A insert before (A pos 2) (B pos 2)", lopA_head);
 
-	// add_Head(lopC_head, 2);
-	// inDSSV("C add head (null)", lopC_head);
+	// insert_Before(lopA_head, get_Node(lopB_head, 2), 20);
+	// inDSSV("A insert before (A pos 20) (B pos 2)", lopA_head);
 
-	// add_Tail(lopC_tail, 2);
-	// inDSSV("C add tail (null)", lopC_tail);
-
-	// add_Before(lopC_head, 2, 0, QUEUE);
-	// inDSSV("C add before 0 (null) (queue)", lopC_head);
-
-	// add_Before(lopC_head, 2, 0, STACK);
-	// inDSSV("C add before 0 (null) (stack)", lopC_head);
-
-	// add_After(lopC_head, lopC_tail, 2, 0);
-	// inDSSV("C add after 0 (null)", lopC_head);
+	// insert_Before(lopA_head, get_Node(lopB_head, 20), 2);
+	// inDSSV("A insert before (A pos 2) (B pos 20)", lopA_head);
 
 
 
-	// lopC_tail = create_List(lopC_head, 2);
-	// inDSSV("C create", lopC_head);
+
+	// insert_After(lopA_head, lopA_tail, get_Node(lopB_head, 2), 0);
+	// inDSSV("A insert after (A pos 0) (B pos 2)", lopA_head);
+
+	// insert_After(lopA_head, lopA_tail, get_Node(lopB_head, 2), 2);
+	// inDSSV("A insert after (A pos 2) (B pos 2)", lopA_head);
+
+	// insert_After(lopA_head, lopA_tail, get_Node(lopB_head, 2), 20);
+	// inDSSV("A insert after (A pos 20) (B pos 2)", lopA_head);
+
+	// insert_After(lopA_head, lopA_tail, get_Node(lopB_head, 20), 2);
+	// inDSSV("A insert after (A pos 2) (B pos 20)", lopA_head);
+
+	/* ------------------------------- */
+
+	// delete_Head(lopA_head, lopA_tail, 0);
+	// inDSSV("A delete head 2 -", lopA_head);
+
+	// delete_Head(lopA_head, lopA_tail, 0);
+	// inDSSV("A delete head 2 -", lopA_head);
+
+	// delete_Head(lopA_head, lopA_tail, 2);
+	// inDSSV("A delete head", lopA_head);
+
+	// delete_Head(lopA_head, lopA_tail, 20);
+	// inDSSV("A delete head 18 +", lopA_head);
+
+	/* ------------------------------- */
+
+	// delete_Tail(lopA_head, lopA_tail, 0);
+	// inDSSV("A delete tail 2 -", lopA_head);
+
+	// delete_Tail(lopA_head, lopA_tail, 2);
+	// inDSSV("A delete tail", lopA_head);
+
+	// delete_Tail(lopA_head, lopA_tail, 20);
+	// inDSSV("A delete tail 18 +", lopA_head);
+
+	/* ------------------------------- */
+
+	// delete_Before(lopA_head, lopA_tail, 0, -1);
+	// inDSSV("A delete before (pos -1) 2 -", lopA_head);
+
+	// delete_Before(lopA_head, lopA_tail, 2, -1);
+	// inDSSV("A delete before (pos -1)", lopA_head);
+
+	// delete_Before(lopA_head, lopA_tail, 20, -1);
+	// inDSSV("A delete before (pos -1) 18 +", lopA_head);
 
 
 
-	// add_Head(lopC_head, 2);
-	// inDSSV("C add head", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 0, 0);
+	// inDSSV("A delete before (pos 0) 2 -", lopA_head);
 
-	// add_Tail(lopC_tail, 2);
-	// inDSSV("C add tail", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 2, 0);
+	// inDSSV("A delete before (pos 0)", lopA_head);
 
-	// add_Before(lopC_head, 2, 0, QUEUE);
-	// inDSSV("C add before 0 (queue)", lopC_head);
-
-	// add_Before(lopC_head, 2, 0, STACK);
-	// inDSSV("C add before 0 (stack)", lopC_head);
-
-	// add_After(lopC_head, lopC_tail, 2, 0);
-	// inDSSV("C add after 0", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 20, 0);
+	// inDSSV("A delete before (pos 0) 18 +", lopA_head);
 
 
 
-	/*** add_Before() ***/
+	// delete_Before(lopA_head, lopA_tail, 0, 2);
+	// inDSSV("A delete before (pos 2) 2 -", lopA_head);
+
+	// delete_Before(lopA_head, lopA_tail, 2, 2);
+	// inDSSV("A delete before (pos 2)", lopA_head);
+
+	// delete_Before(lopA_head, lopA_tail, 20, 2);
+	// inDSSV("A delete before (pos 2) 18 +", lopA_head);
 
 
 
-	// add_Before(lopC_head, 2, -1, QUEUE);
-	// inDSSV("C add before -1 (queue)", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 0, 20);
+	// inDSSV("A delete before (pos 20) 2 -", lopA_head);
 
-	// add_Before(lopC_head, 2, -1, STACK);
-	// inDSSV("C add before -1 (stack)", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 2, 20);
+	// inDSSV("A delete before (pos 20)", lopA_head);
 
-	// add_Before(lopC_head, 2, 40, QUEUE);
-	// inDSSV("C add before 40 (queue)", lopC_head);
+	// delete_Before(lopA_head, lopA_tail, 20, 20);
+	// inDSSV("A delete before (pos 20) 18 +", lopA_head);
 
-	// add_Before(lopC_head, 2, 40, STACK);
-	// inDSSV("C add before 40 (stack)", lopC_head);
+	/* ------------------------------- */
 
-	// add_Before(lopC_head, 2, 11, QUEUE);
-	// inDSSV("C add before 11 (queue)", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 0, -1);
+	// inDSSV("A delete after (pos -1) 2 -", lopA_head);
 
-	// add_Before(lopC_head, 2, 13, STACK);
-	// inDSSV("C add before 13 (stack)", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 2, -1);
+	// inDSSV("A delete after (pos -1)", lopA_head);
 
-	// add_Before(lopC_head, 2, 2, QUEUE);
-	// inDSSV("C add before 2 (queue)", lopC_head);
-
-	// add_Before(lopC_head, 2, 2, STACK);
-	// inDSSV("C add before 2 (stack)", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 20, -1);
+	// inDSSV("A delete after (pos -1) 18 +", lopA_head);
 
 
 
-	/*** add_After ***/
+	// delete_After(lopA_head, lopA_tail, 0, 0);
+	// inDSSV("A delete after (pos 0) 2 -", lopA_head);
+
+	// delete_After(lopA_head, lopA_tail, 2, 0);
+	// inDSSV("A delete after (pos 0)", lopA_head);
+
+	// delete_After(lopA_head, lopA_tail, 20, 0);
+	// inDSSV("A delete after (pos 0) 18 +", lopA_head);
 
 
 
-	// add_After(lopC_head, lopC_tail, 2, -1);
-	// inDSSV("C add after -1", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 0, 2);
+	// inDSSV("A delete after (pos 2) 2 -", lopA_head);
 
-	// add_After(lopC_head, lopC_tail, 2, -1);
-	// inDSSV("C add after -1", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 2, 2);
+	// inDSSV("A delete after (pos 2)", lopA_head);
 
-	// add_After(lopC_head, lopC_tail, 2, 40);
-	// inDSSV("C add after 40", lopC_head);
-
-	// add_After(lopC_head, lopC_tail, 2, 40);
-	// inDSSV("C add after 40", lopC_head);
-
-	// add_After(lopC_head, lopC_tail, 2, 11);
-	// inDSSV("C add after 11", lopC_head);
-
-	// add_After(lopC_head, lopC_tail, 2, 12);
-	// inDSSV("C add after 12", lopC_head);
-
-	// delete_Head(lopC_head, lopC_tail, 2);
-	// inDSSV("c delete head", lopC_head);
-
-	// delete_Tail(lopC_head, lopC_tail, 14);
-	// inDSSV("c delete tail", lopC_head);
+	// delete_After(lopA_head, lopA_tail, 20, 0);
+	// inDSSV("A delete after (pos 2) 18 +", lopA_head);
 
 
-	singleList_t<sinhVien_t> *lopD_head = nullptr;
-	singleList_t<sinhVien_t> *lopD_tail = create_List(lopD_head, 8);
 
-	// delete_Head(lopD_head, lopD_tail, 2);
-	// inDSSV("D delete head", lopD_head);
+	// delete_After(lopA_head, lopA_tail, 0, 20);
+	// inDSSV("A delete after (pos 20) 2 -", lopA_head);
 
-	// delete_Tail(lopD_head, lopD_tail, 2);
-	// inDSSV("D delete tail", lopD_head);
+	// delete_After(lopA_head, lopA_tail, 2, 20);
+	// inDSSV("A delete after (pos 20)", lopA_head);
 
-	// delete_Node(lopD_head, lopD_tail, 2, 2);
-	// inDSSV("D delete 2th node", lopD_head);
+	// delete_After(lopA_head, lopA_tail, 20, 20);
+	// inDSSV("A delete after (pos 20) 18 +", lopA_head);
 
-	// std::cout << "\n\nGet 2th node: " << get_Node(lopD_head, 4)->data.stt << "\n\n";
+	/* ------------------------------- */
 
-	delete_Node(lopD_head, lopD_tail, 2, 2);
-	inDSSV("D delete 2th node (16 times)", lopD_head);
+	// delete_Node(lopA_head, lopA_tail, 0, -1);
+	// inDSSV("A delete node (pos -1) 2 -", lopA_head);
 
-	delete_Head(lopD_head, lopD_tail, 2);
-	inDSSV("D delete head (16)", lopD_head);
+	// delete_Node(lopA_head, lopA_tail, 2, -1);
+	// inDSSV("A delete node (pos -1)", lopA_head);
 
-	delete_Node(lopD_head, lopD_tail, 16, 0);
-	inDSSV("D delete head (16)", lopD_head);
+	// delete_Node(lopA_head, lopA_tail, 20, -1);
+	// inDSSV("A delete node (pos -1) 18 +", lopA_head);
 
-	std::cout << "\n";
+
+
+	// delete_Node(lopA_head, lopA_tail, 0, 0);
+	// inDSSV("A delete node (pos 0) 2 -", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 2, 0);
+	// inDSSV("A delete node (pos 0)", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 20, 0);
+	// inDSSV("A delete node (pos 0) 18 +", lopA_head);
+
+
+
+	// delete_Node(lopA_head, lopA_tail, 0, 2);
+	// inDSSV("A delete node (pos 2) 2 -", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 2, 2);
+	// inDSSV("A delete node (pos 2)", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 20, 2);
+	// inDSSV("A delete node (pos 2) 18 +", lopA_head);
+
+
+
+	// delete_Node(lopA_head, lopA_tail, 0, 20);
+	// inDSSV("A delete node (pos 20) 2 -", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 2, 20);
+	// inDSSV("A delete node (pos 20)", lopA_head);
+
+	// delete_Node(lopA_head, lopA_tail, 20, 20);
+	// inDSSV("A delete node (pos 20) 18 +", lopA_head);
+
+	/* ------------------------------- */
+
+	// delete_All(lopA_head, lopA_tail);
+	// inDSSV("A delete all", lopA_head);
+
+	/* ------------------------------- */
+
+	arrange_List(lopA_head, sttTangDan);
+	inDSSV("A arrange list", lopA_head);
+
+
+	std::cout << "\n\n";
 	
     return 0;
 }
