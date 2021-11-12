@@ -5,14 +5,17 @@
  * $Date:               September 18, 2021
  * $Version:            1.0.0
  * 
- * File:                link_list.cpp
+ * File:                single_list.cpp
  * Project:             learning data structures
  * -------------------------------------------------------------
  * Brief:
- *      Creat, insert, search, sort, delete:
- *          1.  Single list
- *          2.  Double list
- *          3.  Circle list
+ *      Functions:
+ *          1.  Add:        Add a brand new node
+ *          2.  Insert:     Insert a existing node
+ *          3.  Search:     Search a existing node
+ *          4.  Delete:     Delete a existing node
+ *          5.  Arrange:    Arrange list
+ *          5.  Create:     Create list
 **/
 
 

@@ -5,15 +5,17 @@
  * $Date:               September 18, 2021
  * $Version:            1.0.0
  *
- * File:                link_list.h
+ * File:                single_list.h
  * Project:             Learning data structures
  * -------------------------------------------------------------
  * Brief:
- *      Single list, doubly list, circular list:
+ *      Functions:
  *          1.  Add:        Add a brand new node
  *          2.  Insert:     Insert a existing node
  *          3.  Search:     Search a existing node
  *          4.  Delete:     Delete a existing node
+ *          5.  Arrange:    Arrange list
+ *          5.  Create:     Create list
 **/
 #ifndef SINGLE_LIST_H
 #define SINGLE_LIST_H
